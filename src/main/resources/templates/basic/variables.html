@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <h1>여러가지 자료구조 표현하기</h1>
+  <ul>
+    <li>단순변수</li>
+    <span>data : [[${data}]]</span>
+  </ul>
+  <ul>
+    <li>Object</li>
+    <span>userData.userName : </span> <span th:text="${userData.getUserName()}"></span><br></br>
+    <span>userData.userAge : </span> <span th:text="${userData['userAge']}"></span><br>
+    <span>userData.userAddress : </span> <span th:text="${userData.userAddress}"></span>
+  </ul>
+  <ul>
+    <li>List</li>
+    <span>fruits[0].fruitName : </span> <span th:text="${fruits[0].fruitName}"></span><br>
+    <span>fruits[0].fruitTaste : </span> <span th:text="${fruits[0].getTaste()}"></span>
+  </ul>
+  <table border="1">
+    <tr>
+      <th>No</th>
+      <th>과일 이름</th>
+      <th>과일 맛</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>[[${fruits[0].fruitName}]]</td>
+      <td>[[${fruits[0].taste}]]</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>[[${fruits[1].fruitName}]]</td>
+      <td>[[${fruits[1].taste}]]</td>
+    </tr>
+  </table>
+  <ul>
+    <li>Map</li>
+    <span>dogName : </span> <span th:text="${map.get('dog').name}"></span><br>
+    <span>dogSound : </span> <span th:text="${map.get('dog').sound}"></span><br>
+    <span>catName : </span> <span th:text="${map.get('cat').name}"></span><br>
+    <span>catSound : </span> <span th:text="${map.get('cat').sound}"></span><br>
+  </ul>
+  <div th:with="dogName=${map['dog'].name}, dogSound=${map['dog'].sound}}">
+    <h3>변수 선언 : with</h3>
+    <ul>
+      <li>강아지 이름 : <span th:text="${dogName}"></span></li>
+      <li>강아지는 [[${dogSound}]] 소리내요</li>
+    </ul>
+  </div>
+</body>
+</html>
