@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>리터럴</h1>
+    <ul>
+        <li>
+            <span th:text="1">123</span>
+            <span th:text="Hello world">123</span>
+        </li>
+        <li>
+            보낸 데이터 : <span>[[${data}]]</span>
+        </li>
+    </ul>
+</body>
+</html>

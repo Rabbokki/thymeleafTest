@@ -5,12 +5,19 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-
+@AllArgsConstructor
+@NoArgsConstructor
 //@RequiredArgsConstructor
 public class UserData {
     private String userName;
     private int userAge;
     private String userAddress;
+
+    public static UserData fromParams(String userName,
+                                      int userAge,
+                                      String userAddress){
+        return new UserData(userName,userAge,userAddress);
+    }
 
 //    public UserData(String userName, int userAge) {
 //        this.userName = userName;

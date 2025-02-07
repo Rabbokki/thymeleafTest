@@ -12,11 +12,12 @@
   </ul>
   <ul>
     <li><a th:href="@{/url}">basic url</a></li>
-      <li><a th:href="@{/getInfo(name=${name},age=${age})}">Query Params</a></li>
+      <li><a th:href="@{|/getInfo?name=${name}&age=${age}|}">Query Params</a></li>
       <span>요청 구두 번호 : [[${shoesNumber}]]</span>
       <li>
 <!--          http://localhost:8080/-->
-          <a th:href="@{/shoes/details/{id}(id = ${shoesNumber})}">
+<!--          <a th:href="@{/shoes/details/{id}(id = ${shoesNumber})}">-->
+          <a th:href="@{|/shoes/details/${shoesNumber}|}">
               Path Variable
           </a>
       </li>
@@ -25,8 +26,9 @@
 
   <ul>
     <li>
-        <a th:href="@{/shoes/{id}(id = ${shoesNumber},
-                            name=${name})}">
+<!--        <a th:href="@{/shoes/{id}(id = ${shoesNumber},-->
+<!--                            name=${name})}">-->
+            <a th:href="@{|/shoes/${shoesNumber}?name=${name}|}">
         Query Params + Path Variable
         </a>
     </li>
