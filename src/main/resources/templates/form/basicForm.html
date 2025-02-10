@@ -11,15 +11,62 @@
     <div class="py-4 text-center">
       <h2>Test Form</h2>
     </div>
-    <form th:action="@{/sendData}" method="post">
+    <form th:action="@{/sendData}"
+          method="post" th:object="${user}">
       <div>
         <label for="nickname">NickName</label>
-        <input type="text" class="form-control" name="nickname">
+        <input type="text" class="form-control" name="myName"
+        th:field="*{nickname}">
         <label for="email">이메일</label>
-        <input type="text" class="form-control" name="email">
+        <input type="text" class="form-control"
+        th:field="*{email}">
       </div>
-      <button class="btn btn-primary" type="submit">전송</button>
+        <hr>
+        <div>CheckBox Test</div>
+        <div class="form-check">
+            <input type="checkbox" th:field="*{trueOrFalse}" class="form-check-input">
+            <label for="trueOrFalse1" class="form-check-label">True or False</label>
+        </div>
+        <hr>
+<!--        다중 체크 박스 동적 생성하기-->
+        <div>
+            <div>취미 선택(다중 선택 쌉가능)</div>
+            <div th:each="h : ${hobbies}">
+                <input type="checkbox" th:field="*{hobbies}"
+                th:value="${h.key}" class="form-check-input">
+                <label th:for="${#ids.prev('hobbies')}" th:text="${h.value}" class="form-check-label"></label>
+            </div>
+        </div>
+        <hr>
+<!--    라디오    좋아하는 프로그램 언어(한개만 선택)-->
+        <div>
+            <div>프로그램 언어 선택(한개만!!!!!!!!!)</div>
+            <div th:each="x : ${lang}" class="form-check form-check-inline">
+                <input type="radio" th:field="*{language}" th:value="${x.name()}" class="form-check-input">
+                <label th:for="${#ids.prev('language')}"
+                th:text="${x.description}" class="form-check-label"></label>
+            </div>
+        </div>
+        <hr>
+<!--        국가 선택-->
+        <div>
+           <div>국가 선택</div>
+            <select th:field="*{country}" class="form-select">
+                <option value="">--- 국가를 선택하세요. ---</option>
+                <option th:each="c : ${nation}" th:value="${c.name()}" th:text="${c.description}">
+
+                </option>
+            </select>
+        </div>
+      <button class="btn btn-primary" type="submit"
+      onsubmit="check()">전송</button>
+
     </form>
   </div>
+<script>
+    function check(){
+        alert("OK");
+    }
+</script>
 </body>
 </html>
